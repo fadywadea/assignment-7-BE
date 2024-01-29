@@ -67,50 +67,14 @@ export const postsOwner = async (req, res) => {
 };
 
 // Tasks Not Done
-// export const tasksNotDone = async (req, res) => {
-//   try {
-//     let convertDate = new Date();
-//     console.log(convertDate, "1");
-//     let millisecond = convertDate.getTime();
-//     console.log(millisecond, "2");
-//     const posts = await postModel.find({ deadline: deadline.getTime() > millisecond });
-//     console.log(posts, "3");
-// if (convertDate > posts.deadline) {
-//   res.status(200).json({ message: posts });
-// } else {
-//     res.status(200).json({ message: "posts" });
-// }
-//   } catch (e) {
-//     res.status(500).json({ error: e });
-//   }
-// }
-
-
 export const tasksNotDone = async (req, res) => {
   let convertDate = new Date();
-  console.log(convertDate, "1");
   let millisecond = convertDate.getTime();
-  console.log(millisecond, "2");
-  const posts = await postModel.find(deadline.getTime() > millisecond );
-  //console.log("tasks not done", posts);
+  const posts = await postModel.find(deadline.getTime > millisecond ); 
 
-  // if (convertDate > posts.deadline) {
-  // res.status(200).json({ message: posts });
-  // } else {
+  if (convertDate > posts.deadline) {
+  res.status(200).json({ message: posts });
+  } else {
     res.status(200).json({ message: "posts" });
-  // }
+  }
 }
-
-
-
-
-//sort([['priority','descending']]
-
-
-// let date = "2/5/2015";
-
-
-// console.log(convertDate, "1");
-
-// let millisecond = convertDate.getTime();
-// console.log(millisecond, "2");
