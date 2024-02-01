@@ -18,7 +18,7 @@ const postSchema = new mongoose.Schema({
     type: mongoose.Schema.ObjectId,
     default: null
   },
-  deadline: String
+  deadline: Date
 }, { timestamps: true });
 
 export const postModel = mongoose.model('post', postSchema);

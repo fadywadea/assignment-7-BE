@@ -15,23 +15,18 @@ dotenv.config();
 const app = express();
 const port = 3000;
 
-dbConnection();
-
 app.use(express.json());
 app.use('/api/v1', userRouter);
 app.use('/api/v1', postRouter);
 
+dbConnection();
+
 app.get('/', (req, res) => res.json({ message: 'Hello World!' }));
 
-
-app.use('*', (req, res, next) => {
-  next(new appError(`Not found endPoint: ${req.originalUrl}`, 404));
-});
+app.use('*', (req, res, next) => { next(new appError(`Not found endPoint: ${req.originalUrl}`, 404)); });
 
 app.use(globalError);
 
-process.on('unhandledRejection', (error) => {
-  console.log('Error:', error);
-});
+process.on('unhandledRejection', (error) => { console.log('Error:', error); });
 
 app.listen(port, () => console.log(`App listening on port ${port}!`));

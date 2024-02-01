@@ -68,13 +68,12 @@ export const postsOwner = async (req, res) => {
 
 // Tasks Not Done
 export const tasksNotDone = async (req, res) => {
-  let convertDate = new Date();
-  let millisecond = convertDate.getTime();
-  const posts = await postModel.find(deadline.getTime > millisecond ); 
-
-  if (convertDate > posts.deadline) {
-  res.status(200).json({ message: posts });
-  } else {
-    res.status(200).json({ message: "posts" });
-  }
+  const currentDate = new Date();
+  console.log(currentDate);
+  const tasks = await postModel.find({
+    status: { $ne: 'done' },
+    deadline: { $lt: currentDate },
+  })
+  .sort([['deadline', 'asc']])
+  res.json(tasks);
 }
